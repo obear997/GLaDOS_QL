@@ -1,93 +1,77 @@
-> GLaDOS是什么？ GLaDOS，隶属于GLaDOS Network，是一家专业的V2Ray/Trojan机场，超过4年的老品牌，官方网站使用自主开发的管理系统，属于技术派的老站，而且流量套餐性价比非常高。GLaDOS加速器在全球4个地区（台湾、香港、日本、美国）的6个数据中心，部署大量优质节点线路，并采用负载均衡技术，会根据用户当地的网络情况自动分配最快的节点进行加速访问，以保障用户可随时快速访问任何地区的网站。现在，GLaDOS已经增加了Trojan节点线路(节点名称为N2)，相较于 VMess 协议的V2Ray节点，其网络连接速度会显著提升，但暂时仅支持 Shadowrocket 和 Clash 系列客户端软件，用户使用体验反馈非常好！
+> 什么是青龙面板 青龙面板支持python3、javaScript、shell、typescript 的定时任务管理面板（A timed task management panel that supports typescript, javaScript, python3, and shell.）
 
-Galdos 官网：https://glados.rocks/
-
-<img width="962" height="311" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_b3433fad3577434a9.png" class="jop-noMdConv">
-
-这里并不是要给大家推荐这个产品，只是本人自己用到了，官网每天可以签到，有时候会赠送1天，然后这里实现了自动签到续费，觉得还可以所以分享一波。
-
-如果你对这个产品感兴趣可自己看看：https://iyideng.vip/special/bgfw/glados-v2ray-wireguard.html
-
-实现自动有两种方法，这里给大家介绍使用的 GitHub 方法。
-
-### 获取代码
-
-代码仓库：https://github.com/obear997/GLaDOS-CheckIn
-
-### 基本功能
-
-- 基于Github Action
-- 每天北京时间9点30分（UTC时间1点30分）进行自动签到
-- 实际上通常会延迟，但不会太久，庆幸的是大多情况下我们并不关心是否准时
-- 可用server酱通过公众号推送结果
-
-![在这里插入图片描述](./imgs/watermark_type_d3F5LXplbmhlaQ_sh_7f4812f2e1cd49f48.png)
-
-### serve酱的sckey（不需要可以跳过）
+### 修改脚本
 
 > 什么是serve酱？ 「Server酱」，英文名「ServerChan」，是一款「手机」和「服务器」、「智能设备」之间的通信软件。 说人话？就是从服务器、路由器等设备上推消息到手机的工具。
 
+在 `sckey` 和 `cookie` 后面填写 serve酱的 `sckey`（不需要可以跳过）和 账号 `cookie`
+
+![在这里插入图片描述](./_resources/4b6651c89c074fa89f59fa030d876944_3ad06e5fd4fb44f4b.png)
+
+#### 获取serve酱的 `sckey`
+
 serve酱官网：https://sct.ftqq.com/
 
-<img width="962" height="569" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_77e8bb7a6e7842879.png" class="jop-noMdConv">
+<img width="962" height="541" src="../_resources/watermark_type_d3F5LXplbmhlaQ_sh_09e605635241469da.png" class="jop-noMdConv">
 
-### 获取GlaDOS Cookie
+#### 获取账号 `cookie`
 
 打开“开发者工具”，通常快捷键为F12，或是点击浏览器选项-更多工具-开发者工具，打开后如图所示点击 “网络” （未进行汉化的话是：network）标签
 
-#### 获取方法1：
+<img width="962" height="533" src="../_resources/watermark_type_d3F5LXplbmhlaQ_sh_a3fb233e149241a8a.png" class="jop-noMdConv">
 
-在签到页面点击 “签到”，相对应的开发者工具 “网络” （未进行汉化的话是：network）标签下会出现“checkin” 请求，点击该请求，会出现更多信息，找到 请求头（Request Headers）里的“cookie”，接下来设置密钥时需要用到
+### 上传脚本
 
-<img width="962" height="533" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_e8f29d2a5e4441d98.png" class="jop-noMdConv">
+#### 方法1：直接上传脚本
 
-#### 获取方法2：
+![在这里插入图片描述](./_resources/watermark_type_d3F5LXplbmhlaQ_sh_85f23192896a4bc9b.png)
 
-GLaDOS 的 Cookie 组成格式为
+可通过 `ftp` 工具直接找到青龙面板安装位置，在 `scripts` 目录中新增自己的目录，所以直接把签到脚本文件放根目录也可以。
 
-```
-cookie: koa:sess=xxxxxxxxx; koa:sess.sig=xxxxxxxx
-```
+青龙面板可能会根据你所使用的命令存放目录，所以每个人都不一样，我的 `docker` 安装目录为：`/etc/systemd/docker/` ，而青龙面板则存放在 `docker` 的子目录中。
 
-在开发者工具中，找到 “应用” 在Cookie 中可看到 `koa:sess` 和 `koa:sess.sig` ，按照上面格式自己拼接起来即可。
+#### 方法2：新建脚本
 
-<img width="962" height="479" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_0da1b3f7d3e0458c9.png" class="jop-noMdConv">
+在青龙面板中找到 “脚本管理”
 
-### Fork此仓库
+![在这里插入图片描述](./_resources/watermark_type_d3F5LXplbmhlaQ_sh_2710d78fde4640609.png)
 
-**注意**：接下来的步骤都是在你自己fork后的仓库下进行操作
+从面板右侧点击 ”+“ 按钮
 
-<img width="962" height="92" src="./imgs/7a0682ef74094da6bc52c3c5d530f6fe_b0fe5753d87b4807a.png" class="jop-noMdConv">
+![在这里插入图片描述](./_resources/766a869e0fdd4576b4d695d8801cade2_872374f62c1d4ada9.png)
 
-### 设置密钥
+根据自己的实际情况填写脚本信息，用到的是 `Python` 所以，文件最后是 `.py`
 
-按照下面步骤，设置2个密钥
+![在这里插入图片描述](./_resources/watermark_type_d3F5LXplbmhlaQ_sh_b910dc692cdd4cd78.png)
 
-- `SCKEY` ： serve酱的sckey（不需要可以不创建或不设置）
-- `COOKIE` ： 账号的cookie（第一步准备工作中所找到的cookie）
+### 添加签到任务
 
-<img width="962" height="372" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_b3ab07adf3c04d2b8.png" class="jop-noMdConv">
+在青龙面板中找到定时任务
 
-### 启用Action
+![在这里插入图片描述](./_resources/watermark_type_d3F5LXplbmhlaQ_sh_a6340a57362946d99.png)
 
-点击 “Actions”，再点击 “I understand my workflows, go ahead and enable them”
+从面板右侧点击 ”新建任务“
 
-<img width="962" height="301" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_d8b542c1e79d40b4b.png" class="jop-noMdConv">
+![在这里插入图片描述](./_resources/8136b97659214f8491816f588328c2fc_3600cf0bdc1241eea.png)
 
-点击仓库（你自己的）右上角的 “Star⭐” 或修改除imgs文件夹和 “README.md” 以外的内容并进行 “Push”
+按照上面创建的文件的名称和路径设置任务命令
 
-### 查看运行结果
+![在这里插入图片描述](./_resources/watermark_type_d3F5LXplbmhlaQ_sh_97ff97fb3b67403d9.png)
 
-<img width="962" height="477" src="./imgs/watermark_type_d3F5LXplbmhlaQ_sh_318d78dab0d243498.png" class="jop-noMdConv">
+时间规则为：`秒 分 时 天 月 周`，如：`0 9 * * *` ，意思是`每天09:00`执行该脚本。
 
-![在这里插入图片描述](./imgs/7f4876ed87bf4be0ab36cedd5c5c897b.png)
+### 测试效果
 
-在GitHub 能看到执行记录，并且微信也收到了 serve酱的 推送的消息，说明自动签到已部署成功。
+点击任务后面的 ”运行“ 按钮进行手动执行一次
 
-### 修改执行时间
+![在这里插入图片描述](./_resources/ffde4bed28a34af1a6cf6a48457282fa_53e8d504d4df4a4d9.png)
 
-打开 `.github/workflows/checkin.yml` ，修改 `crontab` 表达式
+点击任务后面的 ”日志“ 按钮查看运行日志
 
-![在这里插入图片描述](./imgs/watermark_type_d3F5LXplbmhlaQ_sh_302aa3e7e38444dba.png)
+![在这里插入图片描述](./_resources/10a731652af542bfb8edf19cb755bffc_146e566df53e43338.png)
 
-时间规则为：`秒 分 时 天 月 周`，如：`30 1 * * *` ，意思是`每天01:30`执行该脚本。
+见到下面日志，说明成功签到，并且获得了1天奖励时间。
+
+![在这里插入图片描述](./_resources/watermark_type_d3F5LXplbmhlaQ_sh_719c7ee35308481cb.png)
+
+到此，GLaDOS自动签到就部署成功了。
