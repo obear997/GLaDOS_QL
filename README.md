@@ -12,13 +12,13 @@
 
 serve酱官网：https://sct.ftqq.com/
 
-<img width="962" height="541" src="../_resources/watermark_type_d3F5LXplbmhlaQ_sh_09e605635241469da.png" class="jop-noMdConv">
+<img width="962" height="541" src="./_resources/watermark_type_d3F5LXplbmhlaQ_sh_09e605635241469da.png" class="jop-noMdConv">
 
 #### 获取账号 `cookie`
 
 打开“开发者工具”，通常快捷键为F12，或是点击浏览器选项-更多工具-开发者工具，打开后如图所示点击 “网络” （未进行汉化的话是：network）标签
 
-<img width="962" height="533" src="../_resources/watermark_type_d3F5LXplbmhlaQ_sh_a3fb233e149241a8a.png" class="jop-noMdConv">
+<img width="962" height="533" src="./_resources/watermark_type_d3F5LXplbmhlaQ_sh_a3fb233e149241a8a.png" class="jop-noMdConv">
 
 ### 上传脚本
 
