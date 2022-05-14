@@ -1,4 +1,10 @@
 # -*- coding: utf8 -*-
+
+"""
+cron: 0 0 * * *
+new Env('GLaDOS自动签到');
+"""
+
 import requests ,os
 import json
 # 消息推送开关，填off不开启(默认)，填on同时开启cookie失效通知和签到成功通知
