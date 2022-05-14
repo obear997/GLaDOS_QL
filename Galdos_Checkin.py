@@ -3,10 +3,10 @@ import requests ,os
 import json
 # 消息推送开关，填off不开启(默认)，填on同时开启cookie失效通知和签到成功通知
 sever = 'on'
-# 填写pushplus的token，不开启则不用填（自己更改）
-pushplus_token = 'your sckey'
-# 填入glados账号对应cookie
-cookie = 'your glados cookie'
+# 获取pushplus的token（在青龙面板的环境变量或配置文件中设置PUSH_PLUS_TOKEN）
+pushplus_token = os.environ["PUSH_PLUS_TOKEN"]
+# 获取glados账号对应cookie（在青龙面板的环境变量中设置galdos_cookie）
+cookie = os.environ["galdos_cookie"]
 
 def start():
     
@@ -38,12 +38,11 @@ def start():
       if 'message' in checkin.text:
         mess = checkin.json()['message']
         time = state.json()['data']['leftDays'].split('.')[0]
-        #print(time)
 
         requests.get('http://www.pushplus.plus/send?token=' + pushplus_token +'&title=GLaDOS自动签到&content=' + '您的Glasod账号 '+time+' 天后到期，' + mess)
 
         print("签到任务执行成功，" + '您的Glasod账号 '+ time + ' 天后到期，' + mess )
-        
+
         print('pushplus送消息成功')
 
       else:
