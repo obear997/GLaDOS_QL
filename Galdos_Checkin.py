@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 """
-cron: 0 0 * * *
+cron: 0 9 * * *
 new Env('GLaDOS自动签到');
 """
 
