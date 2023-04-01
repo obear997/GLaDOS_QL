@@ -19,7 +19,7 @@ def start():
     checkin_url = "https://glados.one/api/user/checkin"
     status_url = "https://glados.one/api/user/status"
     origin = "https://glados.one"
-    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36"
+    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
     payload = {
       'token': "glados.network"
     }
