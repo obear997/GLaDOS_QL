@@ -16,24 +16,27 @@ cookie = os.environ["galdos_cookie"]
 
 def start():
     
-    checkin_url = "https://glados.one/api/user/checkin"
-    status_url = "https://glados.one/api/user/status"
-    origin = "https://glados.one"
-    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+    checkin_url = "https://glados.rocks/api/user/checkin"
+    status_url = "https://glados.rocks/api/user/status"
+    origin = "https://glados.rocks"
+    referer = "https://glados.rocks/console/checkin"
+    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
     payload = {
-      'token': "glados.network"
+      'token': 'glados.one'
     }
 
     checkin = requests.post(checkin_url, headers = {
       'cookie': cookie ,
-      'origin':origin,
-      'user-agent':useragent,
+      'origin': origin,
+      'user-agent': useragent,
       'content-type':'application/json;charset=UTF-8'
     }, data = json.dumps(payload))
 
     state =  requests.get(status_url, headers = {
-      'cookie': cookie ,
-      'user-agent':useragent
+      'cookie': cookie,
+      'referer': referer,
+      'user-agent': useragent,
+      'content-type': 'application/json;charset=UTF-8'
     })
 
     if sever == 'off':
